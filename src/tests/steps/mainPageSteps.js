@@ -16,7 +16,7 @@ When(/^I delete random item from list$/, async function () {
 
 });
 
-When(/^I mark as checked random item from list$/, async function () {
+When(/^I mark as completed random item from list$/, async function () {
 
 });
 
@@ -24,7 +24,11 @@ When(/^I delete last added item from list$/, async function () {
 
 });
 
-When(/^I edit text in last added item$/, async function () {
+When(/^I edit text in last added item with adding random text$/, async function () {
+
+});
+
+When(/^I edit text in last added item with text '(.*)'$/, async function (text) {
 
 });
 
@@ -32,23 +36,19 @@ When(/^I click 'Clear completed' button$/, async function () {
 
 });
 
-When(/^I add item that contains only spaces$/, async function () {
+When(/^I add item with text '(.*)'$/, async function (text) {
 
 });
 
-When(/^I add item with '(.*)'$/, async function (text) {
+Then(/^item with the same random text is on the list$/, async function () {
 
 });
 
-Then(/^$item with the same random text is on the list/, async function () {
+Then(/^count of items on list is the same as actual number of items on list$/, async function () {
 
 });
 
-Then(/^displayed count of items on list is correct$/, async function () {
-
-});
-
-Then(/^text of item is edited$/, async function () {
+Then(/^text of last added item is different$/, async function () {
 
 });
 
@@ -61,5 +61,17 @@ Then(/^list is empty$/, async function () {
 });
 
 Then(/^item with '(.*)' is present on list$/, async function (text) {
+
+});
+
+Then(/^item mark as completed is not on list$/, async function () {
+
+});
+
+Then(/^count of items is not displayed$/, async function () {
+
+});
+
+Then(/^count of items is not containing items marked as completed$/, async function () {
 
 });
