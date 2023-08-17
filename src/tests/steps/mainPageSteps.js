@@ -15,10 +15,6 @@ When(/^I add to list item with random text$/, async function () {
     await browser.keys('Enter');
 });
 
-When(/^I delete random item from list$/, async function () {
-    
-});
-
 When(/^I mark as completed random item from list$/, async function () {
     await MainPage.clickItemCompletedCheckboxByIndex(RadnomUtils.getRandomNumberByRange(1, await MainPage.getListItemsCount()));
 });
@@ -32,10 +28,6 @@ When(/^I edit text in last added item with adding random text$/, async function 
     await MainPage.doubleClickOnListItemByIndex(await MainPage.getListItemsCount());
     await MainPage.sendEditTextToListItem(this.editText);
     await browser.keys('Enter');
-});
-
-When(/^I edit text in last added item with text '(.*)'$/, async function (text) {
-
 });
 
 When(/^I click 'Clear completed' button$/, async function () {
@@ -68,7 +60,8 @@ Then(/^list is empty$/, async function () {
 });
 
 Then(/^item with '(.*)' is present on list$/, async function (text) {
-
+    const actualText = await MainPage.getTextFromItemByIndex(await MainPage.getListItemsCount());
+    assert.deepEqual(actualText, text);
 });
 
 Then(/^item mark as completed is (||not )present on list$/, async function (isPresent) {
@@ -77,10 +70,6 @@ Then(/^item mark as completed is (||not )present on list$/, async function (isPr
     } else {
         assert.deepEqual(await MainPage.getCompletedListItemsCount(), 0);
     }
-});
-
-Then(/^count of items is not displayed$/, async function () {
-
 });
 
 Then(/^count of items is not containing items marked as completed$/, async function () {

@@ -31,6 +31,10 @@ class MainPage extends Page {
         return new Element('//span[@class="todo-count"]//strong', 'Items count');
     }
 
+    getListItemTextByIndex(index) {
+        return new Element(`(${this.listItem.locator}//label)[${index}]`, `List item text with index '${index}'`);
+    }
+
     getListItemByText(text) {
         return new Element(`${this.listItem.locator}//label[text()="${text}"]`, `List item with text ${text}`);
     }
@@ -91,6 +95,10 @@ class MainPage extends Page {
 
     async getItemsCountValue() {
         return parseInt(await this.itemsCount.getText());
+    }
+
+    async getTextFromItemByIndex(index) {
+        return this.getListItemTextByIndex(index).getText();
     }
 }
 

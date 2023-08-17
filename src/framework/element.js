@@ -45,4 +45,8 @@ export default class Element {
     async moveTo() {
         return (await $(this.locator)).moveTo();
     }
+
+    async clear() {
+        return (await $(this.locator)).clearValue();
+    }
 }

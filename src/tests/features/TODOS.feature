@@ -58,13 +58,7 @@ Feature: TODOS
         When I add item with text '      '
         Then list is empty
 
-    # @negative @test-09
-    # Scenario: When you edit item and delete text, item is removed from list
-    #     When I add to list item with random text
-    #         And I edit text in last added item with text ''
-    #     Then list is empty
-
-    # @negative @test-10
-    # Scenario: When you add two word with many spaces beetwen them, added item contains only one white space beetwen words
-    #     When I add item with text 'one     two'
-    #     Then item with 'one two' is present on list
+    @negative @test-09
+    Scenario: When you add two word with many spaces beetwen them, added item contains only one white space beetwen words
+        When I add item with text 'one     two'
+        Then item with 'one two' is present on list
