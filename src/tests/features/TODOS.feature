@@ -32,14 +32,14 @@ Feature: TODOS
         When I click 'Clear completed' button
         Then item mark as completed is not present on list
 
-    # @positive @test-05
-    # Scenario: Count of items is correct according to changes on list
-    #     When I add to list item with random text
-    #     Then count of items on list is the same as actual number of items on list
-    #     When I add to list item with random text
-    #     Then count of items on list is the same as actual number of items on list
-    #     When I delete last added item from list
-    #     Then count of items on list is the same as actual number of items on list
+    @positive @test-05
+    Scenario: Count of items is correct according to changes on list
+        When I add to list item with random text
+        Then count of items on list is the same as actual number of items on list
+        When I add to list item with random text
+        Then count of items on list is the same as actual number of items on list
+        When I delete last added item from list
+        Then count of items on list is the same as actual number of items on list
 
     # @positive @test-06
     # Scenario: Count of items is not taking into account items marked as completed

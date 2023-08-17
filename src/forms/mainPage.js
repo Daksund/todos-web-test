@@ -27,6 +27,10 @@ class MainPage extends Page {
         return new Element('//button[@class="clear-completed"]', 'Clear completed button');
     }
 
+    get itemsCount() {
+        return new Element('//span[@class="todo-count"]//strong', 'Items count');
+    }
+
     getListItemByText(text) {
         return new Element(`${this.listItem.locator}//label[text()="${text}"]`, `List item with text ${text}`);
     }
@@ -83,6 +87,10 @@ class MainPage extends Page {
 
     async clickClearCompletedBtn() {
         return this.clearCompletedBtn.click();
+    }
+
+    async getItemsCountValue() {
+        return parseInt(await this.itemsCount.getText());
     }
 }
 

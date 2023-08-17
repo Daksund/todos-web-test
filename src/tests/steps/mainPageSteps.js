@@ -51,7 +51,7 @@ Then(/^item with the same random text is on the list$/, async function () {
 });
 
 Then(/^count of items on list is the same as actual number of items on list$/, async function () {
-
+    assert.deepEqual(await MainPage.getItemsCountValue(), await MainPage.getListItemsCount());
 });
 
 Then(/^text of last added item is edited with addition of random text$/, async function () {
