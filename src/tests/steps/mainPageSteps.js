@@ -16,7 +16,7 @@ When(/^I add to list item with random text$/, async function () {
 });
 
 When(/^I delete random item from list$/, async function () {
-
+    
 });
 
 When(/^I mark as completed random item from list$/, async function () {
@@ -24,7 +24,7 @@ When(/^I mark as completed random item from list$/, async function () {
 });
 
 When(/^I delete last added item from list$/, async function () {
-
+    await MainPage.deleteListItemByIndex(await MainPage.getListItemsCount());
 });
 
 When(/^I edit text in last added item with adding random text$/, async function () {
@@ -60,7 +60,7 @@ Then(/^'Clear completed' button is displayed$/, async function () {
 });
 
 Then(/^list is empty$/, async function () {
-
+    assert.isTrue(await MainPage.getListItemsCount() === 0);
 });
 
 Then(/^item with '(.*)' is present on list$/, async function (text) {

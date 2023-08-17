@@ -10,11 +10,11 @@ Feature: TODOS
         When I add to list item with random text
         Then item with the same random text is on the list
 
-    # @positive @test-02
-    # Scenario: Add item to list and delete it
-    #     When I add to list item with random text
-    #         And I delete last added item from list
-    #     Then list is empty
+    @positive @test-02
+    Scenario: Add item to list and delete it
+        When I add to list item with random text
+            And I delete last added item from list
+        Then list is empty
 
     # @positive @test-03
     # Scenario: Add item to list and edit it

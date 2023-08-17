@@ -17,6 +17,10 @@ export default class Element {
         return (await $(this.locator)).waitForDisplayed();
     }
 
+    async waitForClickable() {
+        return (await $(this.locator)).waitForClickable();
+    }
+
     async getElementsCount() {
         const elements = await $$(this.locator);
         return elements.length;
@@ -24,5 +28,17 @@ export default class Element {
 
     async getText() {
         return (await $(this.locator)).getText();
+    }
+
+    async click() {
+        return (await $(this.locator)).click();
+    }
+
+    async doubleClick() {
+        return (await $(this.locator)).doubleClick();
+    }
+
+    async moveTo() {
+        return (await $(this.locator)).moveTo();
     }
 }

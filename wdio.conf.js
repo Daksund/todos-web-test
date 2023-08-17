@@ -1,3 +1,5 @@
+import { browser } from '@wdio/globals';
+
 export const config = {
     //
     // ====================
@@ -44,7 +46,7 @@ export const config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
+    maxInstances: 1,
     //
     // If you have trouble getting all important capabilities together, check out the
     // Sauce Labs platform configurator - a great tool to configure your capabilities:
@@ -66,7 +68,7 @@ export const config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'warn',
     //
     // Set specific log levels per logger
     // loggers:
@@ -233,8 +235,9 @@ export const config = {
      * @param {ITestCaseHookParameter} world    world object containing information on pickle and test step
      * @param {object}                 context  Cucumber World object
      */
-    // beforeScenario: function (world, context) {
-    // },
+    beforeScenario: async function (world, context) {
+        await browser.reloadSession();
+    },
     /**
      *
      * Runs before a Cucumber Step.
@@ -267,7 +270,7 @@ export const config = {
      * @param {number}                 result.duration  duration of scenario in milliseconds
      * @param {object}                 context          Cucumber World object
      */
-    // afterScenario: function (world, result, context) {
+    // afterScenario: async function (world, result, context) {
     // },
     /**
      *

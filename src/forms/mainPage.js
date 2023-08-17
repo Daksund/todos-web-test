@@ -12,11 +12,23 @@ class MainPage extends Page {
     }
 
     get listItem() {
-        return new Element('//ul[@class="todo-list"]//li//label', 'List item');
+        return new Element('//ul[@class="todo-list"]//li', 'List item');
     }
 
     getListItemByText(text) {
-        return new Element(`//ul[@class="todo-list"]//li//label[text()="${text}"]`, `List item with text ${text}`);
+        return new Element(`${this.listItem.locator}//label[text()="${text}"]`, `List item with text ${text}`);
+    }
+
+    getListItemByIndex(index) {
+        return new Element(`(${this.listItem.locator})[${index}]`, `List item with index${index}`);
+    }
+
+    getListItemCompletedCheckboxByIndex(index) {
+        return new Element(`${this.listItem.locator}//input[@type="checkbox"])[${index}]`, `List item completed checkbox with index '${index}'`);
+    }
+
+    getListItemDeleteBtnByIndex(index) {
+        return new Element(`(${this.listItem.locator}//button[@class="destroy"])[${index}]`, `List item delete button with index '${index}'`);
     }
 
     async sendTextToNewTodoField(text) {
@@ -29,6 +41,12 @@ class MainPage extends Page {
 
     async isListItemDisplayedByText(text) {
         return this.getListItemByText(text).waitForDisplayed();
+    }
+
+    async deleteListItemByIndex(index) {
+        await this.getListItemByIndex(index).moveTo();
+        await this.getListItemDeleteBtnByIndex(index).waitForClickable();
+        return this.getListItemDeleteBtnByIndex(index).click();
     }
 }
 
