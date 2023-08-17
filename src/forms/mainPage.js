@@ -19,6 +19,14 @@ class MainPage extends Page {
         return new Element('//input[@class="edit"]', 'List item in edit mode');
     }
 
+    get completedListItem() {
+        return new Element('//li[@class="completed"]', 'Completed list item');
+    }
+
+    get clearCompletedBtn() {
+        return new Element('//button[@class="clear-completed"]', 'Clear completed button');
+    }
+
     getListItemByText(text) {
         return new Element(`${this.listItem.locator}//label[text()="${text}"]`, `List item with text ${text}`);
     }
@@ -28,7 +36,7 @@ class MainPage extends Page {
     }
 
     getListItemCompletedCheckboxByIndex(index) {
-        return new Element(`${this.listItem.locator}//input[@type="checkbox"])[${index}]`, `List item completed checkbox with index '${index}'`);
+        return new Element(`(${this.listItem.locator}//input[@type="checkbox"])[${index}]`, `List item completed checkbox with index '${index}'`);
     }
 
     getListItemDeleteBtnByIndex(index) {
@@ -54,11 +62,27 @@ class MainPage extends Page {
     }
 
     async doubleClickOnListItemByIndex(index) {
-        await this.getListItemByIndex(index).doubleClick();
+        return this.getListItemByIndex(index).doubleClick();
     }
 
     async sendEditTextToListItem(text) {
-        await this.listItemInEditMode.type(text);
+        return this.listItemInEditMode.type(text);
+    }
+
+    async getCompletedListItemsCount() {
+        return this.completedListItem.getElementsCount();
+    }
+
+    async clickItemCompletedCheckboxByIndex(index) {
+        return this.getListItemCompletedCheckboxByIndex(index).click();
+    }
+
+    async isClearCompletedButtonDisplayed() {
+        return this.clearCompletedBtn.waitForDisplayed();
+    }
+
+    async clickClearCompletedBtn() {
+        return this.clearCompletedBtn.click();
     }
 }
 

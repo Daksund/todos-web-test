@@ -22,14 +22,15 @@ Feature: TODOS
             And I edit text in last added item with adding random text
         Then text of last added item is edited with addition of random text
 
-    # @positive @test-04 
-    # Scenario: Add item to list, mark it as completed and use 'Clear completed' button
-    #     When I add to list item with random text
-    #         And I add to list item with random text
-    #         And I mark as completed random item from list
-    #     Then 'Clear completed' button is displayed
-    #     When I click 'Clear completed' button
-    #     Then item mark as completed is not on list
+    @positive @test-04 
+    Scenario: Add item to list, mark it as completed and use 'Clear completed' button
+        When I add to list item with random text
+            And I add to list item with random text
+            And I mark as completed random item from list
+        Then item mark as completed is present on list
+            And 'Clear completed' button is displayed
+        When I click 'Clear completed' button
+        Then item mark as completed is not present on list
 
     # @positive @test-05
     # Scenario: Count of items is correct according to changes on list

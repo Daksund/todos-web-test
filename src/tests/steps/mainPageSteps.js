@@ -20,7 +20,7 @@ When(/^I delete random item from list$/, async function () {
 });
 
 When(/^I mark as completed random item from list$/, async function () {
-
+    await MainPage.clickItemCompletedCheckboxByIndex(RadnomUtils.getRandomNumberByRange(1, await MainPage.getListItemsCount()));
 });
 
 When(/^I delete last added item from list$/, async function () {
@@ -39,7 +39,7 @@ When(/^I edit text in last added item with text '(.*)'$/, async function (text) 
 });
 
 When(/^I click 'Clear completed' button$/, async function () {
-
+    await MainPage.clickClearCompletedBtn();
 });
 
 When(/^I add item with text '(.*)'$/, async function (text) {
@@ -59,7 +59,7 @@ Then(/^text of last added item is edited with addition of random text$/, async f
 });
 
 Then(/^'Clear completed' button is displayed$/, async function () {
-
+    assert.isTrue(await MainPage.isClearCompletedButtonDisplayed());
 });
 
 Then(/^list is empty$/, async function () {
@@ -70,14 +70,14 @@ Then(/^item with '(.*)' is present on list$/, async function (text) {
 
 });
 
-Then(/^item mark as completed is not on list$/, async function () {
-
+Then(/^item mark as completed is (||not )present on list$/, async function (isPresent) {
+    if (isPresent === '') {
+        assert.isAbove(await MainPage.getCompletedListItemsCount(), 0);
+    } else {
+        assert.deepEqual(await MainPage.getCompletedListItemsCount(), 0);
+    }
 });
 
 Then(/^count of items is not displayed$/, async function () {
-
-});
-
-Then(/^count of items is not containing items marked as completed$/, async function () {
 
 });
