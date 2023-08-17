@@ -6,6 +6,10 @@ export default class Element {
     }
 
     async type(text) {
+        return (await $(this.locator)).addValue(text);
+    }
+
+    async clearAndType(text) {
         return (await $(this.locator)).setValue(text);
     }
 

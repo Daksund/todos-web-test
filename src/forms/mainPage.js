@@ -15,6 +15,10 @@ class MainPage extends Page {
         return new Element('//ul[@class="todo-list"]//li', 'List item');
     }
 
+    get listItemInEditMode() {
+        return new Element('//input[@class="edit"]', 'List item in edit mode');
+    }
+
     getListItemByText(text) {
         return new Element(`${this.listItem.locator}//label[text()="${text}"]`, `List item with text ${text}`);
     }
@@ -47,6 +51,14 @@ class MainPage extends Page {
         await this.getListItemByIndex(index).moveTo();
         await this.getListItemDeleteBtnByIndex(index).waitForClickable();
         return this.getListItemDeleteBtnByIndex(index).click();
+    }
+
+    async doubleClickOnListItemByIndex(index) {
+        await this.getListItemByIndex(index).doubleClick();
+    }
+
+    async sendEditTextToListItem(text) {
+        await this.listItemInEditMode.type(text);
     }
 }
 

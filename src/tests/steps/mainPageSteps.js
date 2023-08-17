@@ -28,7 +28,10 @@ When(/^I delete last added item from list$/, async function () {
 });
 
 When(/^I edit text in last added item with adding random text$/, async function () {
-
+    this.editText = RadnomUtils.generateRandomString(8);
+    await MainPage.doubleClickOnListItemByIndex(await MainPage.getListItemsCount());
+    await MainPage.sendEditTextToListItem(this.editText);
+    await browser.keys('Enter');
 });
 
 When(/^I edit text in last added item with text '(.*)'$/, async function (text) {
@@ -51,8 +54,8 @@ Then(/^count of items on list is the same as actual number of items on list$/, a
 
 });
 
-Then(/^text of last added item is different$/, async function () {
-
+Then(/^text of last added item is edited with addition of random text$/, async function () {
+    assert.isTrue(await MainPage.getListItemByText(`${this.randomText}${this.editText}`).waitForDisplayed());
 });
 
 Then(/^'Clear completed' button is displayed$/, async function () {

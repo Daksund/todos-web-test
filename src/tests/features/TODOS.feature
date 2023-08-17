@@ -16,11 +16,11 @@ Feature: TODOS
             And I delete last added item from list
         Then list is empty
 
-    # @positive @test-03
-    # Scenario: Add item to list and edit it
-    #     When I add to list item with random text
-    #         And I edit text in last added item
-    #     Then text of last added item is different
+    @positive @test-03
+    Scenario: Add item to list and edit it
+        When I add to list item with random text
+            And I edit text in last added item with adding random text
+        Then text of last added item is edited with addition of random text
 
     # @positive @test-04 
     # Scenario: Add item to list, mark it as completed and use 'Clear completed' button
