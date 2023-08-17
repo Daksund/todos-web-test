@@ -41,12 +41,12 @@ Feature: TODOS
         When I delete last added item from list
         Then count of items on list is the same as actual number of items on list
 
-    # @positive @test-06
-    # Scenario: Count of items is not taking into account items marked as completed
-    #     When I add to list item with random text
-    #     Then count of items on list is the same as actual number of items on list
-    #     When I mark as completed random item from list
-    #     Then count of items is not containing items marked as completed
+    @positive @test-06
+    Scenario: Count of items is not taking into account items marked as completed
+        When I add to list item with random text
+        Then count of items on list is the same as actual number of items on list
+        When I mark as completed random item from list
+        Then count of items is not containing items marked as completed
 
     # @negative @test-07
     # Scenario: Item is not added when field is empty

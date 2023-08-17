@@ -81,3 +81,8 @@ Then(/^item mark as completed is (||not )present on list$/, async function (isPr
 Then(/^count of items is not displayed$/, async function () {
 
 });
+
+Then(/^count of items is not containing items marked as completed$/, async function () {
+    const expectedNumber = (await MainPage.getListItemsCount()) - (await MainPage.getCompletedListItemsCount());
+    assert.deepEqual(await MainPage.getItemsCountValue(), expectedNumber);
+});
