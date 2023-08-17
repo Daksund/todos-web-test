@@ -48,15 +48,15 @@ Feature: TODOS
         When I mark as completed random item from list
         Then count of items is not containing items marked as completed
 
-    # @negative @test-07
-    # Scenario: Item is not added when field is empty
-    #     When I add item with text ''
-    #     Then list is empty
+    @negative @test-07
+    Scenario: Item is not added when field is empty
+        When I add item with text ''
+        Then list is empty
 
-    # @negative @test-08
-    # Scenario: Item is not added when field contains only white spaces
-    #     When I add item with text '      '
-    #     Then list is empty
+    @negative @test-08
+    Scenario: Item is not added when field contains only white spaces
+        When I add item with text '      '
+        Then list is empty
 
     # @negative @test-09
     # Scenario: When you edit item and delete text, item is removed from list

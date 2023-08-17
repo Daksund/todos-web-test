@@ -43,7 +43,8 @@ When(/^I click 'Clear completed' button$/, async function () {
 });
 
 When(/^I add item with text '(.*)'$/, async function (text) {
-
+    await MainPage.sendTextToNewTodoField(text);
+    await browser.keys('Enter');
 });
 
 Then(/^item with the same random text is on the list$/, async function () {
