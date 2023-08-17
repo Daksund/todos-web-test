@@ -1,15 +1,18 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { browser, $ } from '@wdio/globals'
+import { browser } from '@wdio/globals'
 import { assert } from 'chai';
 import MainPage from '../../forms/mainPage.js';
+import RadnomUtils from '../../framework/utils/randomUtils.js';
 
 Given(/^todos page is open$/, async function () {
     await browser.url('https://todomvc.com/examples/angular2/');
-    assert.isTrue(await MainPage.isPageOpen());
+    assert.isTrue(await MainPage.waitForPageToOpen());
 });
 
 When(/^I add to list item with random text$/, async function () {
-
+    this.randomText = RadnomUtils.generateRandomString(8);
+    await MainPage.sendTextToNewTodoField(this.randomText);
+    await browser.keys('Enter');
 });
 
 When(/^I delete random item from list$/, async function () {
@@ -41,7 +44,7 @@ When(/^I add item with text '(.*)'$/, async function (text) {
 });
 
 Then(/^item with the same random text is on the list$/, async function () {
-
+    assert.isTrue(await MainPage.isListItemDisplayedByText(this.randomText));
 });
 
 Then(/^count of items on list is the same as actual number of items on list$/, async function () {
