@@ -61,4 +61,4 @@ Feature: TODOS
     @negative @test-09
     Scenario: When you add two word with many spaces beetwen them, added item contains only one white space beetwen words
         When I add item with text 'one     two'
-        Then item with 'one two' is present on list
+        Then last added item on list have text 'one two'

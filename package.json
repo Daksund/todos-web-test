@@ -1,5 +1,6 @@
 {
-  "name": "my-new-project",
+  "name": "todos-web-test",
+  "author": "Wojciech Wojcicki",
   "type": "module",
   "devDependencies": {
     "@wdio/cli": "^8.15.5",
@@ -8,7 +9,7 @@
     "@wdio/spec-reporter": "^8.15.0"
   },
   "scripts": {
-    "wdio": "wdio run ./wdio.conf.js"
+    "test": "wdio run ./config/wdio.chrome.conf.js"
   },
   "dependencies": {
     "chai": "^4.3.7"
