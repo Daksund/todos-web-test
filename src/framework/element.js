@@ -7,62 +7,70 @@ export default class Element {
         this.name = name;
     }
 
+    getElement() {
+        return $(this.locator);
+    }
+
+    getElements() {
+        return $$(this.locator);
+    }
+
     async type(text) {
         logger.info(`Sending text '${text}' to '${this.name}'`);
-        return (await $(this.locator)).addValue(text);
+        await this.getElement().addValue(text);
     }
 
     async clearAndType(text) {
         logger.info(`Clearing and sending text '${text}' to '${this.name}'`);
-        return (await $(this.locator)).setValue(text);
+        await this.getElement().setValue(text);
     }
 
     async isDisplayed() {
         logger.info(`Checking if '${this.name}' is displayed`);
-        return (await $(this.locator)).isDisplayed();
+        return this.getElement().isDisplayed();
     }
 
     async waitForDisplayed() {
         logger.info(`Waiting for '${this.name}' to be displayed`);
-        return (await $(this.locator)).waitForDisplayed();
+        return this.getElement().waitForDisplayed();
     }
 
     async waitForClickable() {
         logger.info(`Waiting for '${this.name}' to be clickable`);
-        return (await $(this.locator)).waitForClickable();
+        return this.getElement().waitForClickable();
     }
 
     async getElementsCount() {
         logger.info(`Getting count of '${this.name}'`);
-        const elements = await $$(this.locator);
+        const elements = await this.getElements();
         logger.info(`Count of '${this.name}': ${elements.length}`);
         return elements.length;
     }
 
     async getText() {
         logger.info(`Getting text from '${this.name}'`);
-        const text = (await $(this.locator)).getText();
+        const text = await this.getElement().getText();
         logger.info(`Received text from '${this.name}': ${text}`);
         return text;
     }
 
     async click() {
         logger.info(`Clicking '${this.name}'`);
-        return (await $(this.locator)).click();
+        await this.getElement().click();
     }
 
     async doubleClick() {
         logger.info(`Double clicking '${this.name}'`);
-        return (await $(this.locator)).doubleClick();
+        await this.getElement().doubleClick();
     }
 
     async moveTo() {
         logger.info(`Moving pointer over '${this.name}'`);
-        return (await $(this.locator)).moveTo();
+        await this.getElement().moveTo();
     }
 
     async clear() {
         logger.info(`Clearing text from '${this.name}'`);
-        return (await $(this.locator)).clearValue();
+        await this.getElement().clearValue();
     }
 }

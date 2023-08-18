@@ -130,4 +130,5 @@ dist
 .pnp.*
 
 # reports
-reports/*
+reports/html/*
+reports/json/*

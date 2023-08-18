@@ -1,8 +1,8 @@
-import { browser } from '@wdio/globals';
 import reporter from 'cucumber-html-reporter';
 import fs from 'fs';
 import { removeSync } from 'fs-extra/esm';
 import { logger } from '../src/framework/logger.js';
+import { timeouts } from './timeouts.js';
 
 const jsonReportDir = 'reports/json';
 const htmlReportDir = 'reports/html';
@@ -16,9 +16,8 @@ export const wdioConfig = {
     maxInstances: 1,
     logLevel: 'warn',
     bail: 0,
-    baseUrl: 'http://localhost',
-    waitforTimeout: 10000,
-    connectionRetryTimeout: 120000,
+    waitforTimeout: timeouts.explicit,
+    connectionRetryTimeout: timeouts.connectionRetry,
     connectionRetryCount: 3,
     framework: 'cucumber',
     reporters: ['spec', 
@@ -37,7 +36,7 @@ export const wdioConfig = {
         source: true,
         strict: false,
         tagExpression: '',
-        timeout: 60000,
+        timeout: timeouts.cucumberStep,
         ignoreUndefinedDefinitions: false
     },
     onPrepare: async function () {
@@ -52,7 +51,7 @@ export const wdioConfig = {
             }
             fs.mkdirSync(htmlReportDir);
         } catch (err) {
-            logger.error('Error removing directory:', err);
+            logger.error('Error removing  or making directory:', err);
         }
     },
     beforeScenario: async function (testCase) {
