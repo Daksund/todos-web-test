@@ -9,10 +9,10 @@ Used tech stack:
 
 ---How to run test---
 
-What you need to install:
-- Node.js
-- npm
-- Chrome browser
+What you need to install/update:
+- Node.js (at least version 18)
+- npm (at least version 9)
+- Chrome browser (make sure you are using latest release version)
 
 Set up:
 - Open cmd in project folder

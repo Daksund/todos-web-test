@@ -1,5 +1,4 @@
 import { Given, When, Then } from '@wdio/cucumber-framework';
-import { browser } from '@wdio/globals'
 import { assert } from 'chai';
 import MainPage from '../../forms/mainPage.js';
 import RadnomUtils from '../../framework/utils/randomUtils.js';
