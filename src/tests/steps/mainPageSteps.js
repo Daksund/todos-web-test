@@ -5,6 +5,7 @@ import RadnomUtils from '../../framework/utils/randomUtils.js';
 import ENV from '../../../config/environment.js';
 
 const RANDOM_STRING_LENGTH = 8;
+const KEY_ENTER = 'Enter';
 
 Given(/^todos page is open$/, async function () {
     await browser.url(ENV.todosMainUrl);
@@ -14,7 +15,7 @@ Given(/^todos page is open$/, async function () {
 When(/^I add to list item with random text$/, async function () {
     this.randomText = RadnomUtils.generateRandomString(RANDOM_STRING_LENGTH);
     await MainPage.sendTextToNewTodoField(this.randomText);
-    await browser.keys('Enter');
+    await browser.keys(KEY_ENTER);
 });
 
 When(/^I mark as completed random item from list$/, async function () {
@@ -29,7 +30,7 @@ When(/^I edit text in last added item with adding random text$/, async function 
     this.editText = RadnomUtils.generateRandomString(RANDOM_STRING_LENGTH);
     await MainPage.doubleClickOnListItemByIndex(await MainPage.getListItemsCount());
     await MainPage.sendEditTextToListItem(this.editText);
-    await browser.keys('Enter');
+    await browser.keys(KEY_ENTER);
 });
 
 When(/^I click 'Clear completed' button$/, async function () {
@@ -38,7 +39,7 @@ When(/^I click 'Clear completed' button$/, async function () {
 
 When(/^I add item with text '(.*)'$/, async function (text) {
     await MainPage.sendTextToNewTodoField(text);
-    await browser.keys('Enter');
+    await browser.keys(KEY_ENTER);
 });
 
 Then(/^item with the same random text is on the list$/, async function () {

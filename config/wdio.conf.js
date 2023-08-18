@@ -3,6 +3,7 @@ import fs from 'fs';
 import { removeSync } from 'fs-extra/esm';
 import { logger } from '../src/framework/logger.js';
 import { timeouts } from './timeouts.js';
+import moment from 'moment';
 
 const jsonReportDir = 'reports/json';
 const htmlReportDir = 'reports/html';
@@ -58,23 +59,15 @@ export const wdioConfig = {
         await browser.reloadSession();
         logger.info(`---Start of scenario: ${testCase.pickle.name}---`);
     },
-    onComplete: function(exitCode, config, capabilities, results) {
+    onComplete: function() {
         try {
 
-            const now = new Date();
-
-            const day = String(now.getDate()).padStart(2, '0');
-            const month = String(now.getMonth() + 1).padStart(2, '0');
-            const year = now.getFullYear();
-            const hour = String(now.getHours()).padStart(2, '0');
-            const minute = String(now.getMinutes()).padStart(2, '0');
-
-            const formattedDate = `${day}-${month}-${year}_${hour}-${minute}`;
+            const date = moment().format('YYYY-MM-DD_HH-mm');
 
             const options = {
                 theme: 'bootstrap',
                 jsonFile: `${jsonReportDir}`,
-                output: `${htmlReportDir}/${formattedDate}_report.html`,
+                output: `${htmlReportDir}/${date}_report.html`,
                 reportSuiteAsScenarios: true,
                 scenarioTimestamp: true,
                 launchReport: false,
