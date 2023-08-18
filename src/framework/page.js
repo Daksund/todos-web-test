@@ -1,4 +1,5 @@
 import Element from "./element.js";
+import { logger } from '../framework/logger.js';
 
 export default class Page {
 
@@ -9,7 +10,7 @@ export default class Page {
     }
 
     async waitForPageToOpen() {
-        const isOpen = await this.form.waitForDisplayed();
-        return isOpen;
+        logger.info(`Waiting for '${this.name}' to open`);
+        return this.form.waitForDisplayed();
     }
 }

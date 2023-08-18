@@ -2,6 +2,7 @@ import { browser } from '@wdio/globals';
 import reporter from 'cucumber-html-reporter';
 import fs from 'fs';
 import { removeSync } from 'fs-extra/esm';
+import { logger } from '../src/framework/logger.js';
 
 const jsonReportDir = 'reports/json';
 const htmlReportDir = 'reports/html';
@@ -51,11 +52,12 @@ export const wdioConfig = {
             }
             fs.mkdirSync(htmlReportDir);
         } catch (err) {
-            console.error('Error removing directory:', err);
+            logger.error('Error removing directory:', err);
         }
     },
-    beforeScenario: async function (world, context) {
+    beforeScenario: async function (testCase) {
         await browser.reloadSession();
+        logger.info(`---Start of scenario: ${testCase.pickle.name}---`);
     },
     onComplete: function(exitCode, config, capabilities, results) {
         try {
@@ -83,7 +85,7 @@ export const wdioConfig = {
             reporter.generate(options);
         }
         catch (err) {
-            console.log("err", err);
+            logger.error("Error generating report:", err);
         }
     },
 }
